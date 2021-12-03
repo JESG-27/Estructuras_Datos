@@ -1,6 +1,4 @@
 #include <iostream>
-#include <stack>
-#include <list>
 
 using namespace std;
 
@@ -142,17 +140,56 @@ void ListaDoble()
     enteros.print();                                                // imprime el elemento de cada nodo
 }
 
-//////////////////////////////////////////////////////////////////////////////////// Pila ///////////////////////////////////////////////////////////////////////////////////// 
-void Pila()
+///////////////////////////////////////////////////////////////////////////// Listas Circulares ///////////////////////////////////////////////////////////////////////////////
+void ListaCir()
 {
-    stack<int> pila;
+    ListaCircular<int> Lista;
+
+    Lista.push_front(4);
+    Lista.push_front(3);
+    Lista.push_front(2);
+    Lista.push_front(1);
+
+    Lista.push_back(5);
+    Lista.push_back(6);
+
+    cout << "Enteros insertados al inicio: 4, 3, 2, 1" << endl;
+    cout << "Enteros insertados al final: 5, 6" << endl << endl;
+
+    cout << "Cantidad de Nodos: " << Lista.size() << endl;
+    Lista.print();
+
+    cout << "Nodo anterior del Nodo inicial: ";
+    Lista.ant_head();
+    cout << endl;
+    cout << "Nodo sig del Nodo final: ";
+    Lista.sig_tail();
+    cout << endl << endl;
+
+    cout << "Elimina el primer y el ultimo nodo" << endl;
+    Lista.pop_front();
+    Lista.pop_back();
+
+    Lista.print();
+    cout << "Nodo anterior del Nodo inicial: ";
+    Lista.ant_head();
+    cout << endl;
+    cout << "Nodo sig del Nodo final: ";
+    Lista.sig_tail();
+    cout << endl << endl;
+}
+
+//////////////////////////////////////////////////////////////////////////////////// Pila ///////////////////////////////////////////////////////////////////////////////////// 
+void menuPila()
+{
+    Pila<int> pila;
 
     string opc;
     while(true)
     {
         cout << "1) Apilar" << endl;
         cout << "2) Eliminar tope de pila" << endl;
-        cout << "3) Mostrar" << endl;
+        cout << "3) Desapilar" << endl;
         cout << "0) Salir" << endl;
         cout << ": ";
         getline(cin, opc);
@@ -180,9 +217,10 @@ void Pila()
         else if (opc == "3")
         {
             cout << "Cantidad de Elementos apilados: " << pila.size() << endl;
+            
             while (!pila.empty())
             {
-                cout << pila.top() << endl;
+                cout << *pila.top() << endl;
                 pila.pop();
             }
         }
@@ -194,5 +232,134 @@ void Pila()
 
         system("PAUSE");
         system("CLS");
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////// Cola //////////////////////////////////////////////////////////////////////////////////////
+void menuCola()
+{
+    Cola<int> cola;
+
+    string opc;
+    while(true)
+    {
+        cout << "1) Encolar" << endl;
+        cout << "2) Eliminar frente de cola" << endl;
+        cout << "3) Desencolar" << endl;
+        cout << "0) Salir" << endl;
+        cout << ": ";
+        getline(cin, opc);
+
+        if (opc == "1")
+        {
+            int num;
+            cout << "Entero: ";
+            cin >> num; cin.ignore();
+            cola.push(num);
+        }
+
+        else if (opc == "2")
+        {
+            if (!cola.empty())
+            {
+                cola.pop();
+            }
+            else if (cola.empty())
+            {
+                cout << "Cola vacia" << endl;
+            }
+        }
+
+        else if (opc == "3")
+        {
+            cout << "Cantidad de Elementos encolados: " << cola.size() << endl;
+            
+            while (!cola.empty())
+            {
+                cout << *cola.front() << endl;
+                cola.pop();
+            }
+        }
+
+        else if (opc == "0")
+        {
+            break;
+        }
+
+        system("PAUSE");
+        system("CLS");
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////// Arbol Binario ////////////////////////////////////////////////////////////////////////////////
+void ArbolBin()
+{
+    Arbol<int> arbol;
+    int valor;
+
+    cout << "Ingrese 10 numeros enteros:" << endl;
+
+    for (size_t i=0; i<10; i++)
+    {
+        cin >> valor; cin.ignore();
+        arbol.InsertarNodo(valor);
+    }
+
+    cout << "Recorrido PreOrden" << endl;
+    arbol.PreOrden();
+    cout << endl;
+
+    cout << "Recorrido InOrden" << endl;
+    arbol.InOrden();
+    cout << endl;
+
+    cout << "Recorrido PostOrden" << endl;
+    cout << endl;
+    arbol.PostOrden();
+    cout << endl;
+}
+
+/////////////////////////////////////////////////////////////////////////////////// Grafo ////////////////////////////////////////////////////////////////////////////////////
+ostream& operator<<(ostream &out, const Grafo &grafo)
+{
+    for (auto const &vertice: grafo) {
+        out << vertice.first << ": ";
+        out << "[";
+        for (size_t i = 0; i < vertice.second.size(); i++) {
+            out << vertice.second[i];
+            if (i != vertice.second.size() - 1) {
+                out << ", ";
+            }
+        }
+        out << "]";
+        out << endl;
+    }
+
+    return out;
+}
+
+void funGrafo()
+{
+    Grafo grafo;
+
+    grafo["A"] = {"B", "C", "D"};
+    grafo["B"] = {"A", "H"};
+    grafo["C"] = {"A", "G", "F"};
+    grafo["D"] = {"A", "E"};
+    grafo["E"] = {"D", "K"};
+    grafo["F"] = {"C", "J"};
+    grafo["G"] = {"C", "J"};
+    grafo["H"] = {"B", "I"};
+    grafo["I"] = {"H", "J"};
+    grafo["J"] = {"F", "G", "I", "K"};
+    grafo["K"] = {"E", "J"};
+
+    cout << grafo;
+
+    // vector<string> recorrido = busqueda_profundidad(grafo);
+    vector<string> recorrido = busqueda_amplitud(grafo);
+
+    for (auto const &vertice: recorrido) {
+        cout << vertice << endl;
     }
 }
