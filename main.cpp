@@ -4,6 +4,11 @@
 #include "ArregloDinamico.h"
 #include "ListaLiga.h"
 #include "listadobleligada.h"
+#include "ListaCircular.h"
+#include "pila.h"
+#include "cola.h"
+#include "Arbol.h"
+#include "Grafo.h"
 
 
 #include "Estructuras.h"
@@ -31,38 +36,53 @@ int main()
         if (opc == "1")
         {
             menuArreglo();
-            system("PAUSE");
-            system("CLS");
         }
 
         else if (opc == "2")
         {
             cout << "Ejemplo Lista Simplemente Ligada" << endl;
             ListaSimple();
-            system("PAUSE");
-            system("CLS");
         }
 
         else if (opc == "3")
         {
             cout << "Ejemplo Lista Doblemente Ligada" << endl;
             ListaDoble();
-            system("PAUSE");
-            system("CLS");
+        }
+
+        else if (opc == "4")
+        {
+            cout << "Ejemplo Lista Circular" << endl;
+            ListaCir();
         }
 
         else if (opc == "5")
         {
-            Pila();
-            system("PAUSE");
-            system("CLS");
+            menuPila();
         }
 
+        else if (opc == "6")
+        {
+            menuCola();
+        }
+
+        else if (opc == "7")
+        {
+            ArbolBin();
+        }
+
+        else if (opc == "8")
+        {
+            funGrafo();
+        }
 
         else if (opc == "0")
         {
             break;
         }
+
+        system ("PAUSE");
+        system ("CLS");
     }
     
     return 0;
