@@ -100,6 +100,7 @@ void ListaSimple()
     cout << "Enteros insertardos al final: 7, 8" << endl;
 
     cout << "Cantidad: " << lista.size() << endl;               // imprime la cantidad de nodos (elementos)
+    lista.print();
     
     lista.pop_back();                                           // elimina el ultimo (cola)
     cout << "Se elimina el ultimo nodo" << endl;
@@ -314,7 +315,6 @@ void ArbolBin()
     cout << endl;
 
     cout << "Recorrido PostOrden" << endl;
-    cout << endl;
     arbol.PostOrden();
     cout << endl;
 }
