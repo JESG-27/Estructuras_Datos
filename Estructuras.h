@@ -69,6 +69,7 @@ void menuArreglo()
 
                 else if (opc == 7)
                 {
+                    cout << "Capacidad: " << arreglo.capacidad() << endl;
                     cout << "Elementos: " << arreglo.size() << endl;
                     arreglo.mostrar();
                     cout << endl;
@@ -131,11 +132,22 @@ void ListaDoble()
     cout << "Elementos de la lista: " << endl;
     enteros.print();                                                // imprime el elemento de cada nodo
 
+    enteros.insert(0, 3);                                           // Insertar un 0 en la posicion 3
+    cout << "Se inserta el 0 en la posicion 3"<< endl;
+    enteros.print();
+    cout << "Cantidad: " << enteros.size() << endl;
+
+    int *ptr_02 = enteros.find(0);                                  // buscar un elemento
+    if (ptr_02)
+    {         
+        *ptr_02 = 10;                                               // Lo cambia por 10
+    }
+    cout << "Se busca el 0, si lo encuentra lo cambia por un 10" << endl;
+
     enteros.remove_if(1);                                           // elimina todos los nodos que almacenan el 1
 
     cout << "Elimina todos los nodos que almacenan el 1" << endl;
     cout << "Cantidad: " << enteros.size() << endl;                 // imprime la cantidad de nodos (elementos)
-
 
     cout << "Elementos de la lista: " << endl;
     enteros.print();                                                // imprime el elemento de cada nodo
@@ -159,6 +171,8 @@ void ListaCir()
 
     cout << "Cantidad de Nodos: " << Lista.size() << endl;
     Lista.print();
+
+    cout << "Direccion en memoria del 4: " << Lista.find(4) << endl;
 
     cout << "Nodo anterior del Nodo inicial: ";
     Lista.ant_head();
@@ -356,10 +370,17 @@ void funGrafo()
 
     cout << grafo;
 
-    // vector<string> recorrido = busqueda_profundidad(grafo);
-    vector<string> recorrido = busqueda_amplitud(grafo);
+    cout << "Profundidad" << endl;
+    vector<string> recorrido = busqueda_profundidad(grafo);
 
     for (auto const &vertice: recorrido) {
+        cout << vertice << endl;
+    }
+
+    cout << "Amplitud" << endl;
+    vector<string> recorrido_2 = busqueda_amplitud(grafo);
+
+    for (auto const &vertice: recorrido_2) {
         cout << vertice << endl;
     }
 }
