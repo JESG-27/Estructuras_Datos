@@ -198,7 +198,7 @@ T* ListaDobleLigada<T>::find(const T &dato)
     {
         if (nodo->dato == temp->dato)
         {
-            return &temp->dato;
+            return &(temp->dato);
         }
         temp = temp->sig;
     }
