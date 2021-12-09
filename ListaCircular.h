@@ -235,7 +235,7 @@ void ListaCircular<T>::pop_front()
         head->sig->ant=tail;
         delete head;
         head = temp;
-       tail->sig=head;
+        tail->sig=head;
         cont--;
     }
 }
@@ -349,12 +349,12 @@ void ListaCircular<T>::remove_if(const T &dato)
     {
         if (temp->dato == dato)
         {
-            if (temp->ant == nullptr)
+            if (temp->ant == tail)
             {
                 pop_front();
                 temp = head;
             }   
-            else if (temp->sig == nullptr)
+            else if (temp->sig == head)
             {
                 pop_back();
                 break;
