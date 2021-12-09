@@ -23,6 +23,7 @@ public:
     void eliminar_inicio();
     void eliminar(size_t p);
     size_t size();
+    size_t capacidad();
     T* buscar (const T& dato);
     ArregloDinamico<T*> buscar_todos(const T& dato);
     T operator[](size_t p)
@@ -145,6 +146,12 @@ template <class T>
 size_t ArregloDinamico<T>::size()  // Tamaño del arreglo
 {
     return cont;
+}
+
+template <class T>
+size_t ArregloDinamico<T>::capacidad()  // Capacidad del arreglo
+{
+    return tam;
 }
 
 template <class T>
